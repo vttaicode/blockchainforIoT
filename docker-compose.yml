@@ -16,8 +16,11 @@ services:
       - ./iot_payloads.json:/app/iot_payloads.json
       # Mount Fabric crypto materials & binaries from host (Kali Linux)
       - ~/fabric-samples:/root/fabric-samples:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       - PYTHONUNBUFFERED=1
+      - FABRIC_HOST=host.docker.internal
     networks:
       - iot-net
     restart: unless-stopped

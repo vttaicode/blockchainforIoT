@@ -89,13 +89,14 @@ def _get_fabric_env():
 
 def invoke_fabric(reading_id, device_id, payload_hash, timestamp):
     env, home = _get_fabric_env()
+    fabric_host = os.environ.get("FABRIC_HOST", "localhost")
     chaincode_args = json.dumps({
         "function": "CreateRecord",
         "Args": [reading_id, device_id, payload_hash, timestamp]
     })
     cmd = [
         "peer", "chaincode", "invoke",
-        "-o", "localhost:7050",
+        "-o", f"{fabric_host}:7050",
         "--ordererTLSHostnameOverride", "orderer.example.com",
         "--tls",
         "--cafile", (
@@ -104,12 +105,12 @@ def invoke_fabric(reading_id, device_id, payload_hash, timestamp):
         ),
         "-C", "mychannel",
         "-n", "iotcc",
-        "--peerAddresses", "localhost:7051",
+        "--peerAddresses", f"{fabric_host}:7051",
         "--tlsRootCertFiles", (
             f"{home}/fabric-samples/test-network/organizations/peerOrganizations"
             f"/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
         ),
-        "--peerAddresses", "localhost:9051",
+        "--peerAddresses", f"{fabric_host}:9051",
         "--tlsRootCertFiles", (
             f"{home}/fabric-samples/test-network/organizations/peerOrganizations"
             f"/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
