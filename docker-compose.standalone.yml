@@ -1,0 +1,43 @@
+version: "3.8"
+
+# =====================================================================
+# STANDALONE MODE: Chạy KHÔNG cần Hyperledger Fabric
+# Server sẽ chỉ lưu off-chain và verify local hash.
+# Dùng để test nhanh hoặc demo trên máy không có Fabric.
+# =====================================================================
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: iot-server-standalone
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./iot_payloads.json:/app/iot_payloads.json
+    environment:
+      - PYTHONUNBUFFERED=1
+      - FABRIC_ENABLED=false
+    networks:
+      - iot-net
+    restart: unless-stopped
+
+  sensor:
+    build:
+      context: .
+      dockerfile: Dockerfile.sensor
+    container_name: iot-sensor-standalone
+    environment:
+      - SERVER_URL=http://server:8000/data
+      - DEVICE_ID=sensor_docker_1
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - server
+    networks:
+      - iot-net
+    restart: unless-stopped
+
+networks:
+  iot-net:
+    driver: bridge

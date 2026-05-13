@@ -1,0 +1,54 @@
+[
+  {
+    "reading_id": "sensor_1_2026-05-10T09:38:24.003439+00:00",
+    "device_id": "sensor_1",
+    "timestamp": "2026-05-10T09:38:24.003439+00:00",
+    "payload": {
+      "device_id": "sensor_1",
+      "temperature": 21.66,
+      "humidity": 44.85,
+      "timestamp": "2026-05-10T09:38:24.003439+00:00"
+    },
+    "payload_hash": "6c124442c54c8cda9ec63ad52d87c72cdc607ba3b7af4d16726945cb672be0df",
+    "status": "COMMITTED"
+  },
+  {
+    "reading_id": "sensor_1_2026-05-10T09:38:34.062406+00:00",
+    "device_id": "sensor_1",
+    "timestamp": "2026-05-10T09:38:34.062406+00:00",
+    "payload": {
+      "device_id": "sensor_1",
+      "temperature": 29.71,
+      "humidity": 59.65,
+      "timestamp": "2026-05-10T09:38:34.062406+00:00"
+    },
+    "payload_hash": "ef19e3f84d194fc8b586fb503ebf05b9828123e7baeb1f4bf619f4048a61347d",
+    "status": "COMMITTED"
+  },
+  {
+    "reading_id": "sensor_1_2026-05-10T09:38:44.131655+00:00",
+    "device_id": "sensor_1",
+    "timestamp": "2026-05-10T09:38:44.131655+00:00",
+    "payload": {
+      "device_id": "sensor_1",
+      "temperature": 28.34,
+      "humidity": 40.85,
+      "timestamp": "2026-05-10T09:38:44.131655+00:00"
+    },
+    "payload_hash": "2dc9eab6616114d8c52acf6e153c9efb34e341167f685006ba01963fcd831090",
+    "status": "COMMITTED"
+  },
+  {
+    "reading_id": "sensor_1_2026-05-10T09:38:54.194985+00:00",
+    "device_id": "sensor_1",
+    "timestamp": "2026-05-10T09:38:54.194985+00:00",
+    "payload": {
+      "device_id": "sensor_1",
+      "temperature": 25.65,
+      "humidity": 50.84,
+      "timestamp": "2026-05-10T09:38:54.194985+00:00"
+    },
+    "payload_hash": "101abe49a20a120bc888dbbdc9b774aecd1cdcb0591611779ce9134e7f25f023",
+    "status": "COMMITTED"
+  }
+]

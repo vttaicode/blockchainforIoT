@@ -1,0 +1,13 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy sensor script
+COPY sensor_blockchain.py .
+
+# Run the sensor simulator
+CMD ["python", "-u", "sensor_blockchain.py"]

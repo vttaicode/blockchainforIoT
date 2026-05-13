@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  # ============================================
+  # FastAPI Server (IoT Data + Blockchain API)
+  # ============================================
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: iot-server
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist IoT payload data on host
+      - ./iot_payloads.json:/app/iot_payloads.json
+      # Mount Fabric crypto materials & binaries from host (Kali Linux)
+      - ~/fabric-samples:/root/fabric-samples:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - iot-net
+    restart: unless-stopped
+
+  # ============================================
+  # IoT Sensor Simulator
+  # ============================================
+  sensor:
+    build:
+      context: .
+      dockerfile: Dockerfile.sensor
+    container_name: iot-sensor
+    environment:
+      - SERVER_URL=http://server:8000/data
+      - DEVICE_ID=sensor_docker_1
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - server
+    networks:
+      - iot-net
+    restart: unless-stopped
+
+networks:
+  iot-net:
+    driver: bridge
